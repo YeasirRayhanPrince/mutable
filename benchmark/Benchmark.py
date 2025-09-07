@@ -24,7 +24,8 @@ import yaml
 
 YML_SCHEMA: str = os.path.join('benchmark', '_schema.yml')                      # The validation schema
 
-BENCHMARK_SYSTEMS: list[str] = ['mutable', 'PostgreSQL', 'DuckDB', 'HyPer']     # List of systems
+BENCHMARK_SYSTEMS: list[str] = ['mutable', 'PostgreSQL', 'DuckDB', 'HyPer'
+]     # List of systems
 
 
 class BenchmarkError(Exception):

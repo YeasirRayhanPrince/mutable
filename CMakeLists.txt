@@ -263,6 +263,8 @@ link_directories(${LIBRARY_OUTPUT_PATH})
 # Subdirectories
 add_subdirectory(src)
 add_subdirectory(unittest)
+add_subdirectory(examples)
+
 # Generate EXPORT macros to export symbols in dynamic libraries
 generate_export_header(
     ${PROJECT_NAME}

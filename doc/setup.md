@@ -37,8 +37,8 @@ In the example below, we use the [Ninja build system](https://ninja-build.org/) 
 $ cd ~/mutable-org/mutable
 $ cmake -S . -B build/debug_shared \
 -G Ninja \
--DCMAKE_C_COMPILER=clang \
--DCMAKE_CXX_COMPILER=clang++ \
+-DCMAKE_C_COMPILER=/usr/bin/clang-18 \
+-DCMAKE_CXX_COMPILER=/usr/bin/clang++-18 \
 -DCMAKE_BUILD_TYPE=Debug \
 -DBUILD_SHARED_LIBS=ON \
 -DENABLE_SANITIZERS=ON \
@@ -73,6 +73,26 @@ $ cmake -S . -B build/debug_shared \
 ```
 By reading the output of CMake, verify that the correct compiler (here Clang 14.0.6) is used and that threading is supported (`Found Threads: TRUE`).
 Now you are ready to build!
+
+
+cmake -S . -B build/release
+  -G Ninja \
+  -DCMAKE_C_COMPILER=/usr/bin/clang-18 \
+  -DCMAKE_CXX_COMPILER=/usr/bin/clang++-18 \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_SHARED_LIBS=OFF \
+  -DWITH_V8=ON \
+  -DENABLE_SANITIZERS=OFF \
+  -DENABLE_SANITY_FIELDS=OFF
+
+- cmake --build build/${BUILD_TYPE} --target Boost gitversion
+        - cmake --build build/${BUILD_TYPE} --target shell cardinality_gen
+        - mkdir -p mutable/lib mutable/bin
+        - cp -R include mutable
+        - cp build/${BUILD_TYPE}/lib/libmutable_bundled.a mutable/lib
+        - cp build/${BUILD_TYPE}/bin/cardinality_gen mutable/bin
+        - cp build/${BUILD_TYPE}/bin/shell mutable/bin
+
 
 ## Build the Project
 ```plain
